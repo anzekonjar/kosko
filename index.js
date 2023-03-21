@@ -1,7 +1,32 @@
 const express = require("express");
 const app = express();
 
-app.use(express.json({ extended: false }));
+const session = require("express-session")
+const mongoose = require("mongoose")
+const passport = require("./passport-config")
+const methodOverride = require("method-override")
+
+const uri = "mongodb+srv://anzekonjar:17f63l52a%40AK@anzekonjar.p7qiuba.mongodb.net/kosko?retryWrites=true&w=majority"
+mongoose.set('strictQuery', false)
+mongoose.connect(uri ,{ useNewUrlParser: true, useUnifiedTopology: true },)
+
+app.set('view engine', 'ejs')
+
+app.use(express.json({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static("public"))
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride("_method"))
 
 app.get("/", async (req, res) => {
     try {
