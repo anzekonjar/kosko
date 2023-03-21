@@ -117,8 +117,9 @@ button {
 }
 
 .next {
-    padding: 0px 20px;
-    height: 40px;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-decoration: none;
     background-color: rgb(0, 50, 73);
     color: white;
 }
