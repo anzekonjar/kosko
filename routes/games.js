@@ -5,12 +5,10 @@ const Game = require("../models/game")
 const { checkAuthenticated } = require("./auth")
 
 router.get("/new", checkAuthenticated, (req, res) => {
-    console.log(req.user)
     res.render("games/set-up")
 })
 
 router.get("/", checkAuthenticated, (req, res) => {
-    console.log(req.user)
     res.render("games/kosko")
 })
 
