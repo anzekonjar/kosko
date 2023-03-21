@@ -35,6 +35,8 @@ app.use(methodOverride("_method"))
 app.use('/', auth.router)
 app.use("/game", games)
 
-app.render(login.ejs)
+app.get("/", (req,res) => {
+  res.render("login.ejs")
+})
 
 app.listen(8080)
