@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koško</title>
+    <link rel="stylesheet" href="/CSS/kosko.css">
+    <script src="/Script/kosko.js" defer></script>
+</head>
+<body>
+    <div class="overview">
+        <div class="game">
+            <div class="oponent">
+                <p class="team1"></p>
+                <p style="color: rgb(185, 185, 185);">VS</p>
+                <p class="team2"></p>
+            </div>
+            <p id="date" style="margin: 0;"></p>
+        </div>
+        <div class="part2">
+            <div id="type-num"></div>
+            <div class="timeline">
+            </div>
+            <div id="scoreboard" class="center">
+                <div class="subboard" id="subboard">
+                    <div class="statsA">
+                        <div class="score">
+                            <p class="quarter-score-a" id="quarter-score-a">0</p>
+                            <p id="score-a" class="score-a">0</p>    
+                        </div>
+                        <p class="team1 teamTx"></p>
+                        <div class="time-out" onclick="addTimeout(0)">
+                            <div class="timeout circle"></div>
+                            <div class="timeout circle"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="time" onclick="time()"><p class="minutes">10</p><p>:</p><p class="seconds">00</p></div>
+                        <div class="fouls_quarter">
+                            <p class="foul-num" id="team-foul">0</p>
+                            <div id="quarter" class="quarter">Q1</div>
+                            <p class="foul-num" id="teamB-foul">0</p>
+                        </div>
+                        <div class="pos">
+                            <div class="posession" onclick="turnRed()">
+                                <p class="arrow red">&#11164;</p>
+                                <p class="arrow">&#11166;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statsB">
+                        <div class="score">
+                            <p id="score-b" class="score-b">0</p>
+                            <p class="quarter-score-b" id="quarter-score-b">0</p>    
+                        </div>
+                        <p class="team2 teamTx"></p>
+                        <div class="time-out" onclick="addTimeout(2)">
+                            <div class="timeout circle"></div>
+                            <div class="timeout circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="finish" id="finish">
+                    <h2>Tekma je končana!</h2>
+                    <p>Shrani jo, da si boš lahko rezultate ogledal tudi kasneje.</p>
+                    <div class="finish_btn">
+                        <form action="/" method="POST">
+                            <button class="notsave" type="submit">Ne shrani</button>
+                        </form>
+                        <form action="/game/" method="POST">
+                            <input name="game" id="game" style="display: none">
+                            <button class="save" type="submit">Shrani</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+        </div>
+        <div class="edit">
+            <div class="edit_buttons">
+                <div>
+                    <button onclick="editTime()">EDIT TIME</button>
+                    <button style="margin-left: 10px;" onclick="editQ()">EDIT QUARTER</button>
+                </div>
+                <button>CANCEL</button>
+            </div>
+        </div>
+        <div class="part3">
+            <div class="court-pl">
+                <div class="player player1">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 0, 0)" id="pl-points" class="scoredA">1</div>
+                                    <div onclick="sc(1, 0, 0)" id="pl-points" class="scoredA">2</div>
+                                    <div onclick="sc(2, 0, 0)" id="pl-points" class="scoredA">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(0, 0, 0)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(0, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(0, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(0, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(0, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(0, 0)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+                <div class="player player1">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 1, 0)" id="pl-points" class="scoredA">1</div>
+                                    <div onclick="sc(1, 1, 0)" id="pl-points" class="scoredA">2</div>
+                                    <div onclick="sc(2, 1, 0)" id="pl-points" class="scoredA">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(1, 0, 1)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(1, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(1, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(1, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(1, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(1, 0)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+                <div class="player player1">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 2, 0)" id="pl-points" class="scoredA">1</div>
+                                    <div onclick="sc(1, 2, 0)" id="pl-points" class="scoredA">2</div>
+                                    <div onclick="sc(2, 2, 0)" id="pl-points" class="scoredA">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(2, 0, 2)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(2, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(2, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(2, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(2, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(2, 0)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+                <div class="player player1">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 3, 0)" id="pl-points" class="scoredA">1</div>
+                                    <div onclick="sc(1, 3, 0)" id="pl-points" class="scoredA">2</div>
+                                    <div onclick="sc(2, 3, 0)" id="pl-points" class="scoredA">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(3, 0, 3)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(3, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(3, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(3, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(3, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(3, 0)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+                <div class="player player1">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>                
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 4, 0)" id="pl-points" class="scoredA">1</div>
+                                    <div onclick="sc(1, 4, 0)" id="pl-points" class="scoredA">2</div>
+                                    <div onclick="sc(2, 4, 0)" id="pl-points" class="scoredA">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(4, 0, 4)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(4, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(4, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(4, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(4, 0)"></div>
+                                <div class="circle foul" onclick="addFoul(4, 0)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+            </div>
+            <div class="court-pl">
+                <div class="player player2">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 5, 1)" id="pl-points" class="scoredB">1</div>
+                                    <div onclick="sc(1, 5, 1)" id="pl-points" class="scoredB">2</div>
+                                    <div onclick="sc(2, 5, 1)" id="pl-points" class="scoredB">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(5, 1, 1)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(5, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(5, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(5, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(5, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(5, 1)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+                <div class="player player2">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 6, 1)" id="pl-points" class="scoredB">1</div>
+                                    <div onclick="sc(1 ,6, 1)" id="pl-points" class="scoredB">2</div>
+                                    <div onclick="sc(2, 6, 1)" id="pl-points" class="scoredB">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(6, 1, 2)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(6, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(6, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(6, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(6, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(6, 1)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+                <div class="player player2">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 7, 1)" id="pl-points" class="scoredB">1</div>
+                                    <div onclick="sc(1, 7, 1)" id="pl-points" class="scoredB">2</div>
+                                    <div onclick="sc(2, 7, 1)" id="pl-points" class="scoredB">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(7, 1, 3)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(7, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(7, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(7, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(7, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(7, 1)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+                <div class="player player2">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 8, 1)" id="pl-points" class="scoredB">1</div>
+                                    <div onclick="sc(1, 8, 1)" id="pl-points" class="scoredB">2</div>
+                                    <div onclick="sc(2, 8, 1)" id="pl-points" class="scoredB">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(8, 1, 4)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(8, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(8, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(8, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(8, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(8, 1)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+                <div class="player player2">
+                    <div class="player-box">
+                        <div class="center">
+                            <p class="big_num"></p>         
+                        </div>
+                        <div class="pl-i">
+                            <div class="pl-name">
+                                <p class="num" id="num"></p>
+                                <p class="pl" id="pl"></p>
+                            </div>
+                            <div class="pl-info">
+                                <p class="points-fouls-min">0 | 0:00 </p>
+                                <div class="add-pl-points">
+                                    <div onclick="sc(0, 9, 1)" id="pl-points" class="scoredB">1</div>
+                                    <div onclick="sc(1, 9, 1)" id="pl-points" class="scoredB">2</div>
+                                    <div onclick="sc(2, 9, 1)" id="pl-points" class="scoredB">3</div>
+                                </div>
+                                <div class="switch">
+                                    <button onclick="exchange(9, 1, 5)">Switch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="f">
+                                <div class="circle foul" onclick="addFoul(9, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(9, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(9, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(9, 1)"></div>
+                                <div class="circle foul" onclick="addFoul(9, 1)"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="switch-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
