@@ -3,7 +3,6 @@ const app = express();
 
 const session = require("express-session")
 const mongoose = require("mongoose")
-const passport = require("./passport-config")
 const methodOverride = require("method-override")
 
 const uri = "mongodb+srv://anzekonjar:17f63l52a%40AK@anzekonjar.p7qiuba.mongodb.net/kosko?retryWrites=true&w=majority"
@@ -14,7 +13,6 @@ app.set('view engine', 'ejs')
 
 app.use(express.json({ extended: false }))
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static("public"))
 
 app.use(
   session({
@@ -24,8 +22,6 @@ app.use(
   })
 )
 
-app.use(passport.initialize())
-app.use(passport.session())
 app.use(methodOverride("_method"))
 
 app.get("/", async (req, res) => {
