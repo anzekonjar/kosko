@@ -8,7 +8,7 @@ router.get("/new", checkAuthenticated, (req, res) => {
     res.render("games/set-up")
 })
 
-router.get("/", (req, res) => {
+router.get("/", checkAuthenticated, (req, res) => {
     res.render("games/kosko")
 })
 
