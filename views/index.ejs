@@ -9,9 +9,7 @@
 </head>
 <body>
     <h1>Hi <%= name %></h1>
-    <form action="/game/new" method="GET">
-        <button type="submit">New Game</button>
-    </form>
+    <a href="/game/new">New Game</a>
 
     <% games.forEach(game => { %>
         <div class="game_box">
