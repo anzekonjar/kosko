@@ -1,9 +1,10 @@
-const express = require("express");
-const app = express();
+const express = require("express")
+const app = express()
 
 const session = require("express-session")
 const mongoose = require("mongoose")
 const methodOverride = require("method-override")
+require("dotenv").config()
 
 const uri = "mongodb+srv://anzekonjar:17f63l52a%40AK@anzekonjar.p7qiuba.mongodb.net/kosko?retryWrites=true&w=majority"
 mongoose.set('strictQuery', false)
