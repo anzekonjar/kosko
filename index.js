@@ -35,8 +35,9 @@ app.use(methodOverride("_method"))
 app.use('/', auth.router)
 app.use("/game", games)
 
-app.get("/", (req,res) => {
-  res.render("login.ejs")
+app.get("/", auth.checkAuthenticated, async (req, res) => {
+  const games = await Game.find( {userId: req.user.id} ).sort({ createdAt: "desc" })
+  res.render("index.ejs", { name: req.user.name, games: games })
 })
 
 app.listen(8080)
