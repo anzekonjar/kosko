@@ -3,7 +3,7 @@ const app = express()
 
 const session = require("express-session")
 const mongoose = require("mongoose")
-const MongoStore = require("connect-mongo")(session)
+const MongoStore = require("connect-mongo")
 const passport = require("./passport-config")
 const methodOverride = require("method-override")
 
