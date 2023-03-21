@@ -35,9 +35,17 @@ app.use(methodOverride("_method"))
 app.use('/', auth.router)
 app.use("/game", games)
 
-app.get("/", auth.checkAuthenticated, async (req, res) => {
-  const games = await Game.find( {userId: req.user.id} ).sort({ createdAt: "desc" })
-  res.render("index.ejs", { name: req.user.name, games: games })
-})
+app.get("/", async (req, res) => {
+    try {
+      res.json({
+        status: 200,
+        message: "Get data has successfully",
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Server error");
+    }
+  });
 
-app.listen(5000)
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
