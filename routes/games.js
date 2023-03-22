@@ -4,11 +4,11 @@ const router = express.Router()
 const Game = require("../models/game")
 const { checkAuthenticated } = require("./auth")
 
-router.get("/new", checkAuthenticated, (req, res) => {
+router.get("/new", (req, res) => {
     res.render("games/set-up")
 })
 
-router.get("/", checkAuthenticated, (req, res) => {
+router.get("/", (req, res) => {
     res.render("games/kosko")
 })
 
