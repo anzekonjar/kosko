@@ -20,6 +20,7 @@ app.use(express.json({ extended: false }))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"))
 
+app.use(connect.cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
