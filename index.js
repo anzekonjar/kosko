@@ -5,6 +5,7 @@ const session = require("express-session")
 const mongoose = require("mongoose")
 const passport = require("./passport-config")
 const methodOverride = require("method-override")
+const cookieParser = require('cookie-parser')
 
 const auth = require('./routes/auth')
 const games = require("./routes/games")
@@ -20,7 +21,7 @@ app.use(express.json({ extended: false }))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"))
 
-app.use(connect.cookieParser());
+app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
