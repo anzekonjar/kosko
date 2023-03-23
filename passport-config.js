@@ -4,12 +4,20 @@ const User = require("./models/user")
 const LocalStrategy = require("passport-local").Strategy
 
 passport.serializeUser((user, done) => {
-    done(null, user.id)
+    process.nextTick(function() {
+        return done(null, {
+          id: user.id,
+          username: user.username,
+          picture: user.picture
+        })
+    })
 })
+  
 
-passport.deserializeUser(async (id, done) => {
-    var user = await User.findById(id)
-    done(null, user)
+passport.deserializeUser((user, done) => {
+    process.nextTick(function() {
+        return done(null, user)
+    })
 })
 
 passport.use(
