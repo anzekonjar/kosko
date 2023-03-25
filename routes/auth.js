@@ -4,12 +4,14 @@ const router = express.Router()
 const User = require("../models/user")
 const bcrypt = require("bcrypt")
 const passport = require('passport')
+const user = require('../models/user')
 
 router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs', { error: null })
 })
 
 router.post("/login", (req, res, next) => {
+    console.log(user)
     passport.authenticate("local", (e, user) => {
         if (e) {
             return res.status(400).json({ errors: e })
