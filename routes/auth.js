@@ -37,6 +37,7 @@ router.post("/register", async (req, res) => {
 })
 
 router.delete("/logout", (req, res) => {
+    console.log("logout")
     req.logOut((e) => {
         if (e) { return next(e); }
         res.redirect('/');
