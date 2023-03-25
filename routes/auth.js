@@ -11,6 +11,7 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
 })
 
 router.post("/login", (req, res, next) => {
+    console.log("ok")
     passport.authenticate("local", (e, user) => {
         console.log(user)
         if (e) {
