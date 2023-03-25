@@ -10,6 +10,7 @@ const methodOverride = require("method-override")
 const auth = require('./routes/auth')
 const games = require("./routes/games")
 const Game = require("./models/game")
+const User = require("./models/user")
 
 const uri = "mongodb+srv://anzekonjar:marmelada37@anzekonjar.p7qiuba.mongodb.net/kosko?retryWrites=true&w=majority"
 mongoose.set('strictQuery', false)
