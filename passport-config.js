@@ -13,21 +13,31 @@ passport.deserializeUser(async (id, done) => {
 })
 
 passport.use(
-    new LocalStrategy({ usernameField: "email"}, (email, password, done) => {
-        User.findOne({ email: email })
-            .then(user => bcrypt.compare(password, user.password, (e, isMatch) => {
-                if (e) throw e
+    "local-login",
+    new LocalStrategy(
+      {
+        usernameField: "email",
+      },
+      async function (email, password, done) {
+       try {
+        const user =  await User.findOne({ email: email });
+            console.log(user);
+            if (!user) {
+            console.log("Incorrect username.");
+            }
+       
+       const passwordMatched = await bcrypt.compare(password, user.passwordHash);//unable to get user.password because it store in hash
+            if (passwordMatched) {
+              return user;
+            }
+            else  {
+              console.log("Incorrect password.");
+            }
 
-                if (isMatch) {
-                    return done(null, user)
-                } else {
-                    return done(null, false, { message: "Wrong password" })
-                }
-            }))
-            .catch(e => {
-                return done(null, false, { message: e })
-            })
-    })
-)
+       } catch (error) {
+            console.log(error)
+       }  
+    }
+));
 
 module.exports = passport
