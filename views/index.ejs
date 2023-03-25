@@ -9,23 +9,32 @@
 </head>
 <body>
     <h1>Hi <%= name %></h1>
-    <a href="/game/new">New Game</a>
+    <div class="buttons">
+        <a href="/game/new">
+            <button class="new">NEW GAME</button>
+        </a>
+        <form action="/logout?_method=DELETE" method="POST">
+            <button type="submit">LOG OUT</button>
+        </form>
+    </div>
 
-    <% games.forEach(game => { %>
-        <div class="game_box">
-            <div>
+    <div class="games">
+        <% games.forEach(game => { %>
+            <div class="game_box">
+                <div class="score"><%= game.result[0].score %> : <%= game.result[1].score %></div>
                 <div class="title">
-                    <div><%= game.result[0].name %></div>
-                    <div class="score"><%= game.result[0].score %> : <%= game.result[1].score %></div>
+                    <div><%= game.result[0].name %> <span style="font-size: 11px; color: grey;">VS</span></div>
                     <div><%= game.result[1].name %></div>
                 </div>
-                <a href="/game/<%= game.id %>">Statistika</a>
+                <div class="options">
+                    <form action="/game/<%= game.id %>?_method=DELETE" method="POST">
+                        <button type="submit">DELETE</button>
+                    </form>
+                    <a class="statistika" href="/game/<%= game.id %>">STATS</a>
+                </div>
             </div>
-        </div>
-    <% }) %>
+        <% }) %>    
+    </div>
 
-    <form action="/logout?_method=DELETE" method="POST">
-        <button type="submit">Log Out</button>
-    </form>
 </body>
 </html>

@@ -32,6 +32,10 @@ router.get('/:id', checkAuthenticated, async (req, res) => {
     if (game == null) res.redirect('/')
     res.render('games/show', { game: game })
 })
-  
+
+router.delete("/:id", async (req, res) => {
+    await Game.findByIdAndDelete(req.params.id)
+    res.redirect("/")
+})
 
 module.exports = router

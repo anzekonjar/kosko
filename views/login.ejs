@@ -5,21 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kosko</title>
+    <link rel="stylesheet" href="/CSS/login.css">
 </head>
 <body>
-    <h1>Log in</h1>
-    <%= error %>
-    <form action="/login" method="POST">
-        <div>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required>
-        </div>
-        <button type="submit">Log in</button>
-    </form>
-    <a href="/register">Register</a>
+    <div class="box">
+        <h2>LOGIN</h2>
+        <%= error %>
+        <form class="obrazec" action="/login" method="POST">
+            <div>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit">LOGIN</button>
+        </form>
+        <p class="register">Not a member? <a href="/register">Sign up</a></p>
+    </div>
 </body>
 </html>
