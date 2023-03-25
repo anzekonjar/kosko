@@ -13,7 +13,7 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
 router.post("/login", (req, res, next) => {
     passport.authenticate('local', (e, user) => {
         if (e) { return res.json({ errors: e }) }
-        if (!user) { return res.render('/', { error: "Wrong email or password"}) }
+        if (!user) { return res.render("login", { error: "Wrong email or password"}) }
 
     req.logIn(user, (e) => {
       if (e) { return next(err); }
