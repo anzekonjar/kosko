@@ -10,10 +10,19 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs', { error: null })
 })
 
-router.post("/login", passport.authenticate('local', {
-    successRedirect: "/",
-    failureRedirect: "/login",
-}))
+router.post("/login", (req, res, next) => {
+    passport.authenticate('local', (e, user) => {
+        if (e) { return res.json({ errors: e }) }
+        if (!user) { return res.render('/', { error: "Wrong email or password"}) }
+
+    req.logIn(user, (e) => {
+      if (e) { return next(err); }
+      return res.status(200).redirect("/");
+    })
+
+  })(req, res, next);
+})
+
 
 router.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs')
