@@ -36,7 +36,6 @@ app.use(passport.session())
 app.use(methodOverride("_method"))
 
 passport.use(
-  "local",
   new LocalStrategy(
     {
       usernameField: "email",
@@ -46,8 +45,8 @@ passport.use(
       const user =  await User.findOne({ email: email });
           console.log(user);
           if (!user) {
-              done(null, false)
-          console.log("Incorrect username.");
+            console.log("Incorrect username.");
+            return  done(null, false)
           }
      
      const passwordMatched = await bcrypt.compare(password, user.password);
@@ -55,8 +54,8 @@ passport.use(
             return done(null, user);
           }
           else  {
-              done(null, false)
             console.log("Incorrect password.");
+            return done(null, false)
           }
 
      } catch (error) {
