@@ -26,7 +26,7 @@ passport.use(
             console.log("Incorrect username.");
             }
        
-       const passwordMatched = await bcrypt.compare(password, user.passwordHash);//unable to get user.password because it store in hash
+       const passwordMatched = await bcrypt.compare(password, user.password);
             if (passwordMatched) {
               return user;
             }
