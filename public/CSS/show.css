@@ -1,60 +1,90 @@
 body {
-    margin: 0;
+    margin: 50px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.nav {
-    display: flex;
-    justify-content: center;
-    height: 200px;
+p {
+    margin: 5px;
 }
-
-.es {
-    width: 15%;
-    background-color: rgb(235, 235, 235);
-}
-
-.header {
-    position: relative;
-    width: 70%;
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    z-index: 1;
-}
-
-.header:before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-    background-image: url(/images/picture1.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-
 
 .title {
-    position: relative;
-    display: flex;
-    gap: 80px;
-    font-weight: bold;
-    font-size: 25px;
-    align-items: center;
-    height: 20%;
-    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .score {
-    font-size: 35px;
+    font-size: 30px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-.players >* {
+.options {
+    margin-top: 20px;
+    width: 100%;
     display: flex;
-    gap: 5px;
+    gap: 10px;
+}
+
+.options button, .back {
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    padding: 9px 14px;
+    border-radius: 3px;
+}
+
+.options button {
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(255, 85, 85);
+    cursor: pointer;
+}
+
+.back {
+    text-decoration: none;
+    background-color: lightgreen;
+}
+
+.stats {
+    display: flex;
+    margin-top: 50px;
+    gap: 100px;
+}
+
+.player {
+    display: flex;
+}
+
+.number {
+    width: 40px;
+    text-align: center;
+}
+
+.name {
+    width: 180px;
+}
+
+.points {
+    width: 30px;
+}
+
+.minutes {
+    width: 60px;
+}
+
+.fouls {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(198, 198, 198);
+}
+
+.red {
+    background-color: red;
 }

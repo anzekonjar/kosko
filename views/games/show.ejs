@@ -8,27 +8,32 @@
     <link rel="stylesheet" href="/CSS/show.css">
 </head>
 <body>
-    <div class="nav">
-        <div class="es"></div>
-        <div class="header">
-            <div class="title">
-                <div><%= game.result[0].name %></div>
-                <div class="score"><%= game.result[0].score %> : <%= game.result[1].score %></div>
-                <div><%= game.result[1].name %></div>
-            </div>
+    <div class="header">
+        <div class="title">
+            <div><%= game.result[0].name %> <span style="font-size: 11px; color: grey;">VS</span> <%= game.result[1].name %></div>
+            <div class="score"><%= game.result[0].score %> : <%= game.result[1].score %></div>
         </div>
-        <div class="es"></div>
+        <div class="options">
+            <a class="back" href="/">GO BACK</a>
+            <form action="/game/<%= game.id %>?_method=DELETE" method="POST">
+                <button type="submit">DELETE</button>
+            </form>
+        </div>
     </div>
 
-
-    <div class="players">
+    <div class="stats">
         <% for (var i = 0; i < 2; i++) { %>
-            <% for (var l = 0; l < Object.keys(game.result[i]).length - 5; l++) { %>
-                <div>
-                    <p>#<%= Object.values(game.result[i])[l].number  %></p>
-                    <p><%= Object.values(game.result[i])[l].name  %></p>
-                </div>
-            <% } %>
+            <div class="team">
+                <% for (var l = 0; l < Object.keys(game.result[i]).length - 5; l++) { %>
+                    <div class="player">
+                        <p class="number">#<%= Object.values(game.result[i])[l].number %></p>
+                        <p class="name"><%= Object.values(game.result[i])[l].name %></p>
+                        <p class="points"><%= Object.values(game.result[i])[l].points %></p>
+                        <p class="minutes"><%= Object.values(game.result[i])[l].minutes[0].toLocaleString('en-US', {minimumIntegerDigits: 2,}) %>:<%= Object.values(game.result[i])[l].minutes[1].toLocaleString('en-US', {minimumIntegerDigits: 2,}) %></p>
+                        <div class="fouls"><%= Object.values(game.result[i])[l].fouls %></div>
+                    </div>
+                <% } %>    
+            </div>
         <% } %>
     </div>
     

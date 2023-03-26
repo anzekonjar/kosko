@@ -13,6 +13,7 @@ body {
     border-radius: 10px;
     height: 170px;
     margin: 0 40px 40px 0;
+    background-color: white;
 }
 
 .score {
