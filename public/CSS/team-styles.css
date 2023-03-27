@@ -99,6 +99,7 @@ button {
     cursor: pointer;
     border-radius: 3px;
     border: none;
+    font-weight: bold;
 }
 
 .add {
@@ -110,20 +111,25 @@ button {
     padding: 0 15px;
 }
 
+.add:hover {
+    background-color: rgb(225, 225, 225);
+}
+
 .submit-btn {
     position: absolute;
-    right: 40px;
-    top: 30px;
+    right: 50px;
+    top: 40px;
 }
 
 .next {
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 11px 21px;
     text-decoration: none;
     background-color: rgb(0, 50, 73);
     color: white;
     border-radius: 3px;
     font-size: 13px;
+    font-weight: bold;
 }
 
 .first-five {

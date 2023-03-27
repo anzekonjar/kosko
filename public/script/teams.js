@@ -35,7 +35,7 @@ function addPlayer(c) {
         savedInputs[0].push(document.getElementById("p"+c+"-"+i).value)
         savedInputs[1].push(document.getElementById("p"+c+"-num"+i).value)
     }
-    part3[c].innerHTML += '<div class="player-info '+c+'"><div class="first-five hover F'+c+'" onclick="firstFive('+document.getElementsByClassName("F"+c).length+', '+c+')"><p class="first-five-num">'+ (blue[c].length+1) +'</p></div><div class="number"><input class="number-input" id="p'+c+'-num'+ document.getElementsByClassName(c).length +'" type="number"></div><div class="player-name"><input class="player-input" id="p'+c+'-'+ document.getElementsByClassName(c).length +'" type="text"></div></div>'
+    part3[c].innerHTML += '<div class="player-info '+c+'"><div class="first-five hover F'+c+'" onclick="firstFive('+document.getElementsByClassName("F"+c).length+', '+c+')"><p class="first-five-num">'+ (blue[c].length+1) +'</p></div><div class="number"><input class="number-input" id="p'+c+'-num'+ document.getElementsByClassName(c).length +'" type="number"></div><div class="player-name"><input class="player-input" id="p'+c+'-'+ document.getElementsByClassName(c).length +'" type="text" autocomplete="off"></div></div>'
     for (var i = 0; i < document.getElementsByClassName(c).length -1; i++) {
         document.getElementById("p"+c+"-"+i).value = savedInputs[0][i]
         document.getElementById("p"+c+"-num"+i).value = savedInputs[1][i]

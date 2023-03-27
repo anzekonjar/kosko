@@ -24,6 +24,7 @@
     <div class="stats">
         <% for (var i = 0; i < 2; i++) { %>
             <div class="team">
+                <h3><%= game.result[i].name %></h3>
                 <% for (var l = 0; l < Object.keys(game.result[i]).length - 5; l++) { %>
                     <div class="player">
                         <p class="number">#<%= Object.values(game.result[i])[l].number %></p>

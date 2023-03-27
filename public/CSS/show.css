@@ -88,3 +88,8 @@ p {
 .red {
     background-color: red;
 }
+
+.team h3 {
+    width: 50%;
+    border-bottom: 1px solid black;
+}
