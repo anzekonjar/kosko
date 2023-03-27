@@ -122,6 +122,8 @@ button {
     text-decoration: none;
     background-color: rgb(0, 50, 73);
     color: white;
+    border-radius: 3px;
+    font-size: 13px;
 }
 
 .first-five {
